@@ -65,13 +65,13 @@
             
             <TextBlock Grid.Row="0"    
                        Style="{StaticResource StyleTextBlockText01}"
-                       Text="Для демонстрації методу найменших квадратів використовується функція:"></TextBlock>
+                       Text="For demonstration of ILS method we using function:"></TextBlock>
             <TextBlock Grid.Row="1" 
                        Style="{StaticResource StyleTextBlockEquation}"
                        Text="y = β0 + β1*x1 + β2*x2 + … + βn*xn"></TextBlock>
             <TextBlock Grid.Row="2"
                        Style="{StaticResource StyleTextBlockText01}"
-                       Text="де:"></TextBlock>
+                       Text="where:"></TextBlock>
             <TextBlock Grid.Row="3"
                        Style="{StaticResource StyleTextBlockEquation}"
                        Text="x1 = sin(ωt) + ε1"></TextBlock>
@@ -106,7 +106,7 @@
 
                 <TextBlock Grid.Row="0"
                             Style="{StaticResource StyleTextBlockText02}"
-                            Text="Оберіть кількість вхідних параметрів Х:"></TextBlock>                
+                            Text="Choose number of X values:"></TextBlock>                
                 <Slider Grid.Row="1" Margin="5"      
                         Name="SldNumberOfXValues"
                         VerticalAlignment="Center"
@@ -115,7 +115,7 @@
                         Maximum="20"/>
                 <TextBlock Grid.Row="2"
                            Style="{StaticResource StyleTextBlockText02}"
-                           Text="Оберіть тип шуму:"></TextBlock>
+                           Text="Choose the type of noise:"></TextBlock>
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -124,11 +124,11 @@
 
                     <ToggleButton Grid.Column="0" 
                                   Name="TgBtnWhiteNoise"
-                                  Margin="5,5,2.5,5" Click="BtnWhiteNoise_Click">Білий шум</ToggleButton>
+                                  Margin="5,5,2.5,5" Click="BtnWhiteNoise_Click">White noise</ToggleButton>
                     <ToggleButton Grid.Column="1" 
                                   Name="TgBtnColorfulNoise"
                                   Margin="2.5,5,5,5" 
-                                  Click="BtnColorfulNoise_Click">Кольоровий шум</ToggleButton>
+                                  Click="BtnColorfulNoise_Click">Colorful noise</ToggleButton>
                 </Grid>
                 <Grid Grid.Row="4">
                     <Grid.RowDefinitions>
@@ -143,12 +143,12 @@
                     <CheckBox Grid.Row="0"
                               Name="CbxNoiseInXValues"
                               IsEnabled="False"
-                              Content="дія на вхідні значення Х"
+                              Content="Effects on X values"
                               Style="{StaticResource StyleCheckBox}"></CheckBox>
                     <CheckBox Grid.Row="1"
                               Name="CbxNoiseOutYValues"
                               IsEnabled="False"
-                              Content="дія на вихідне значення Y"
+                              Content="Effects on Y values"
                               Style="{StaticResource StyleCheckBox}"></CheckBox>
                     
                 </Grid>
@@ -160,7 +160,7 @@
                     
                     <TextBlock 
                             Style="{StaticResource StyleTextBlockText02}"
-                            Text="Введіть кількість експериментів:"></TextBlock>
+                            Text="Enter number of experiments:"></TextBlock>
                     <TextBox Grid.Column="1" 
                              Text="100"
                              Name="TbxNumberOfExperiments"
@@ -168,7 +168,7 @@
                 </Grid>
                 <TextBlock Grid.Row="6"
                             Style="{StaticResource StyleTextBlockText02}"
-                            Text="Введіть коефіцієнти вагової функції для ІМНК:"></TextBlock>
+                            Text="Enter the weight coefficients for ILS method:"></TextBlock>
                 <Grid Grid.Row="7">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -228,7 +228,7 @@
 
             <Button Grid.Column="0" Margin="5"
                 Name="BtnGenerateData"
-                FontSize="18" Content="Згенерувати"
+                FontSize="18" Content="Generate"
                 Click="BtnGenerateData_Click">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
@@ -276,7 +276,7 @@
 
             <Button Grid.Column="2"  Margin="0,5,5,5"
                 Name="BtnIntegratedLeastSquares"
-                FontSize="18" Content="ІМНК"
+                FontSize="18" Content="Calc"
                 Click="BtnIntegratedLeastSquares_Click">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">

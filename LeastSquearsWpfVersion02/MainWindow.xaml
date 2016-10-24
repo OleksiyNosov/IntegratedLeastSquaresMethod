@@ -23,17 +23,17 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Button Grid.Column="0">Теорія</Button>
+        <Button Grid.Column="0">Theory</Button>
         <Button Grid.Column="1" Name="BtnDemo" 
-                Click="BtnDemo_Click">Демонстрація ІМНК</Button>
+                Click="BtnDemo_Click">Demonstration</Button>
         <Button Grid.Row="0" Grid.Column="2"
-                Content="Калькулятор"
+                Content="Calculator"
                 Name="BtnCalculate"
                 Click="BtnCalculate_Click"></Button>
-        <Button Grid.Row="1" Grid.Column="0">Інструкція користувача</Button>
-        <Button Grid.Row="1" Grid.Column="1">Про автора</Button>
+        <Button Grid.Row="1" Grid.Column="0">Guide</Button>
+        <Button Grid.Row="1" Grid.Column="1">About the author</Button>
         <Button Grid.Row="1" Grid.Column="2"
-                Name="Exit" Click="BtnExit_Click">Вихід</Button>
+                Name="Exit" Click="BtnExit_Click">Exit</Button>
         
     </Grid>
 </Window>

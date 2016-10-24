@@ -169,8 +169,7 @@ namespace LeastSquearsWpfVersion02
             if (lsData == null)
                 return;
 
-            lsData.CalcIls();
-            lsData.CalcLs();
+            lsData.CalcResults();
 
             ChartWindow chartWindow = new ChartWindow(lsData);
             chartWindow.Show();

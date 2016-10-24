@@ -55,7 +55,7 @@ namespace LeastSquearsWpfVersion02
         private void DrawYResults()
         {
             DrawSeriesResults("Y LS", lsData.ResultLs, Color.Blue);
-            DrawSeriesResults("Y ILS", lsData.ResultLs, Color.Green);
+            DrawSeriesResults("Y ILS", lsData.ResultIls, Color.Green);
         }
 
         private void DrawSeriesResults(string seriesName, LsResult result, Color color)

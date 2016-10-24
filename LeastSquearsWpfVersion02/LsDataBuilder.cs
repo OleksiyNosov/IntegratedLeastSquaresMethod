@@ -158,7 +158,7 @@ namespace LeastSquearsWpfVersion02
                     YNoise = Vector<double>.Build.Dense(tests);
                     break;
                 case NoiseTypes.White:
-                    YNoise = Vector<double>.Build.Dense(tests, (i) => rand.NextDouble() / 5 - 0.1);
+                    YNoise = Vector<double>.Build.Dense(tests, (i) => rand.NextDouble() * 2 - 1);
                     break;
                 case NoiseTypes.Colorful:
                     YNoise = Vector<double>.Build.Dense(tests);

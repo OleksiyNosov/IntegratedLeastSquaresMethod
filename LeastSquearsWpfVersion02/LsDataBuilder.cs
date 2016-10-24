@@ -102,11 +102,11 @@ namespace LeastSquearsWpfVersion02
             AddNoiseToY();
         }
 
-        
 
-        /*
-         * Create standart names for values
-         */
+
+        /// <summary>
+        /// Create standart names for X and Y matrices
+        /// </summary>
         private static void CreateNames()
         {
             xValsNames = new string[numbX];
@@ -117,10 +117,10 @@ namespace LeastSquearsWpfVersion02
         }
 
         #region Noise creation
-        /* 
-         * Create custom noise for X and Y
-         */
 
+        /// <summary>
+        /// Create noise for X values based XNoise
+        /// </summary>
         private static void CreateXNoise()
         {
             rand = new Random();
@@ -141,6 +141,10 @@ namespace LeastSquearsWpfVersion02
                     break;
             }
         }
+
+        /// <summary>
+        /// Create noise for Y values based YNoise
+        /// </summary>
         private static void CreateYNoise()
         {
             rand = new Random();
@@ -165,11 +169,13 @@ namespace LeastSquearsWpfVersion02
         #endregion
 
 
-        /* 
-         * Create X matrix based on 
-         * x_ij = sin(ω*i + φ) + ε
-         * first column have to be filled with 1
-         */
+        /// <summary>
+        /// Create X matrix
+        /// </summary>
+        /// <remarks>
+        /// x_ij = sin(ω*i + φ) + ε,
+        /// first column have to be filled with 1
+        /// </remarks>
         private static void CreateX()
         {
             var alpha = 30;
@@ -179,10 +185,13 @@ namespace LeastSquearsWpfVersion02
             X = Matrix<double>.Build.Dense(tests, numbX, (i, j) => Math.Sin(w * i + alpha * (j - 1)));
             X.SetColumn(0, Vector<double>.Build.Dense(tests, (i) => 1 + XNoise[i, 0]));
         }
-        /*
-         * Create Y vector from X data
-         * Y = β0 + β1*x1 + β2*x2 + … + βn*xn
-         */
+
+        /// <summary>
+        /// Create Y vector from X data
+        /// </summary>
+        /// <remarks>
+        /// Y = β0 + β1*x1 + β2*x2 + … + βn*xn
+        /// </remarks>
         private static void CreateY()
         {
             Y = Vector<double>.Build.Dense(tests);

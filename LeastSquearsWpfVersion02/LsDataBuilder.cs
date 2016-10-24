@@ -18,9 +18,9 @@ using MathNet.Numerics.LinearAlgebra;
 
 namespace LeastSquearsWpfVersion02
 {
-    /*
-     * Determines which type of noise should be generated
-     */
+    /// <summary>
+    /// Determines type of noise/error should be added to calculations
+    /// </summary>
     public enum NoiseTypes
     {
         None = 0,
@@ -28,9 +28,9 @@ namespace LeastSquearsWpfVersion02
         Colorful = 2
     }
 
-    /*
-     * Create data specially for LsData
-     */
+    /// <summary>
+    /// Create data specially for LsData
+    /// </summary>
     public static class LsDataBuilder
     {
         private static Matrix<double> X;
@@ -50,15 +50,21 @@ namespace LeastSquearsWpfVersion02
 
         private static Random rand;
 
-        /*
-         * 1. Receives parameters
-         * 2. Generate data
-         * 3. Return LsData with fully filled LsParameters 
-         */
-        public static LsData Build(int numberOfXValues, int numberOfExperiments, double[] beta, NoiseTypes noiseX, NoiseTypes noiseY, double gamma = 0, double theta = 1)
+        /// <summary>
+        /// Generate default LsData with starting parameters
+        /// </summary>
+        /// <param name="numbX">Number of X values</param>
+        /// <param name="tests">Number of experiments</param>
+        /// <param name="beta">Values which have influence for Y</param>
+        /// <param name="noiseX">Type of noise/error for X values</param>
+        /// <param name="noiseY">Type of noise/error for Y values</param>
+        /// <param name="gamma">Used in further calculations</param>
+        /// <param name="theta">Used in further calculations</param>
+        /// <returns>Returns LsData which ready for further calculations</returns>
+        public static LsData Build(int numbX, int tests, double[] beta, NoiseTypes noiseX, NoiseTypes noiseY, double gamma = 0, double theta = 1)
         {
-            numbX = numberOfXValues;
-            tests = numberOfExperiments;
+            LsDataBuilder.numbX = numbX;
+            LsDataBuilder.tests = tests;
             Beta = Vector<double>.Build.DenseOfArray(beta);
             LsDataBuilder.noiseX = noiseX;
             LsDataBuilder.noiseY = noiseY;
@@ -75,8 +81,8 @@ namespace LeastSquearsWpfVersion02
                     Beta = Beta,
                     NoiseX = LsDataBuilder.noiseX,
                     NoiseY = LsDataBuilder.noiseY,
-                    NumbOfTests = numberOfExperiments,
-                    NumbOfXVal = numberOfXValues,
+                    NumbOfTests = LsDataBuilder.numbX,
+                    NumbOfXVal = LsDataBuilder.tests,
                     XValsNames = xValsNames,
                     YValName = yValName,
                     Gamma = gamma,
@@ -84,13 +90,12 @@ namespace LeastSquearsWpfVersion02
                 });
         }
 
-        /*
-         * Pre-condition: 
-         *      tests, numbX and noises are initialized
-         *      
-         * Post-condition:
-         *      Create all data for LsParameters
-         */
+        /// <summary>
+        /// Create all data for LsParameters
+        /// </summary>
+        /// <remarks>
+        ///  tests, numbX and noises have to be initialized
+        /// </remarks>
         public static void CreateData()
         {
             CreateNames();
@@ -101,8 +106,6 @@ namespace LeastSquearsWpfVersion02
             AddNoiseToX();
             AddNoiseToY();
         }
-
-
 
         /// <summary>
         /// Create standart names for X and Y matrices

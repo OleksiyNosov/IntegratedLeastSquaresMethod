@@ -98,7 +98,11 @@ namespace LeastSquearsWpfVersion02
             CreateYNoise();
             CreateX();
             CreateY();
+            AddNoiseToX();
+            AddNoiseToY();
         }
+
+        
 
         /*
          * Create standart names for values
@@ -172,7 +176,7 @@ namespace LeastSquearsWpfVersion02
             var T = 0.360;
             var w = 2 * Constants.Pi / T;
 
-            X = Matrix<double>.Build.Dense(tests, numbX, (i, j) => Math.Sin(w * i + alpha * (j - 1)) + XNoise[i, j]);
+            X = Matrix<double>.Build.Dense(tests, numbX, (i, j) => Math.Sin(w * i + alpha * (j - 1)));
             X.SetColumn(0, Vector<double>.Build.Dense(tests, (i) => 1 + XNoise[i, 0]));
         }
         /*
@@ -188,10 +192,35 @@ namespace LeastSquearsWpfVersion02
                 double sum = 0;
 
                 for (int j = 0; j < X.ColumnCount; j++)
-                    sum += Beta[j] * X[i, j] + YNoise[i];
+                    sum += Beta[j] * X[i, j];
 
                 Y[i] = sum;
             }
+        }
+
+        /// <summary>
+        /// Add generated noise/error to every value of X matrix
+        /// </summary>
+        private static void AddNoiseToX()
+        {
+            if (noiseX == NoiseTypes.None)
+                return;
+
+            for (int i = 0; i < X.RowCount; i++)
+                for (int j = 0; j < X.ColumnCount; j++)
+                    X[i, j] += XNoise[i, j];
+        }
+
+        /// <summary>
+        /// Add generated noise/error to every value of Y matrix
+        /// </summary>
+        private static void AddNoiseToY()
+        {
+            if (noiseX == NoiseTypes.None)
+                return;
+
+            for (int i = 0; i < Y.Count; i++)
+                Y[i] += YNoise[i];
         }
     }
 }

@@ -1,4 +1,4 @@
-# IntegratedLeastSquaresMethod
+# Integrated Least Squares Method
 
 This project is visually show difference between Least Squares and new one Integrated Least Squares methods.
 

@@ -1,0 +1,303 @@
+﻿<Window x:Class="LeastSquearsWpfVersion02.DemonstrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LeastSquearsWpfVersion02"
+        mc:Ignorable="d"        
+        Title="DemonstrationWindow" Height="600" Width="550">
+    <Window.Resources>
+        <Style x:Key="StyleTextBlockText01" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Grid.Column" Value="1"></Setter>
+            <Setter Property="Grid.ColumnSpan" Value="2"></Setter>
+        </Style>
+        <Style x:Key="StyleTextBlockText02" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+        </Style>
+        <Style x:Key="StyleTextBlockEquation" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Grid.Column" Value="2"></Setter>
+        </Style>
+        <Style x:Key="StyleCheckBox" TargetType="CheckBox">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Grid.Column" Value="1"></Setter>
+        </Style>
+        <Style x:Key="StyleTextBox" TargetType="TextBox">
+            <Setter Property="Margin" Value="2.5"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="15*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Row="0"    
+                       Style="{StaticResource StyleTextBlockText01}"
+                       Text="Для демонстрації методу найменших квадратів використовується функція:"></TextBlock>
+            <TextBlock Grid.Row="1" 
+                       Style="{StaticResource StyleTextBlockEquation}"
+                       Text="y = β0 + β1*x1 + β2*x2 + … + βn*xn"></TextBlock>
+            <TextBlock Grid.Row="2"
+                       Style="{StaticResource StyleTextBlockText01}"
+                       Text="де:"></TextBlock>
+            <TextBlock Grid.Row="3"
+                       Style="{StaticResource StyleTextBlockEquation}"
+                       Text="x1 = sin(ωt) + ε1"></TextBlock>
+            <TextBlock Grid.Row="4"
+                       Style="{StaticResource StyleTextBlockEquation}"
+                       Text="x2 = sin(ωt + φ) + ε2"></TextBlock>
+            <TextBlock Grid.Row="5"
+                       Style="{StaticResource StyleTextBlockEquation}"
+                       Text="           ⋮"></TextBlock>
+            <TextBlock Grid.Row="6"
+                       Style="{StaticResource StyleTextBlockEquation}"
+                       Text="xn = sin(ωt + n*φ) + εn"></TextBlock>
+        </Grid>
+
+        <Grid Grid.Row="1" Name="gridParams">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                            Style="{StaticResource StyleTextBlockText02}"
+                            Text="Оберіть кількість вхідних параметрів Х:"></TextBlock>                
+                <Slider Grid.Row="1" Margin="5"      
+                        Name="SldNumberOfXValues"
+                        VerticalAlignment="Center"
+                        TickPlacement="BottomRight" SmallChange="1" 
+                        IsSnapToTickEnabled="True" ValueChanged="Slider_ValueChanged" 
+                        Maximum="20"/>
+                <TextBlock Grid.Row="2"
+                           Style="{StaticResource StyleTextBlockText02}"
+                           Text="Оберіть тип шуму:"></TextBlock>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <ToggleButton Grid.Column="0" 
+                                  Name="TgBtnWhiteNoise"
+                                  Margin="5,5,2.5,5" Click="BtnWhiteNoise_Click">Білий шум</ToggleButton>
+                    <ToggleButton Grid.Column="1" 
+                                  Name="TgBtnColorfulNoise"
+                                  Margin="2.5,5,5,5" 
+                                  Click="BtnColorfulNoise_Click">Кольоровий шум</ToggleButton>
+                </Grid>
+                <Grid Grid.Row="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox Grid.Row="0"
+                              Name="CbxNoiseInXValues"
+                              IsEnabled="False"
+                              Content="дія на вхідні значення Х"
+                              Style="{StaticResource StyleCheckBox}"></CheckBox>
+                    <CheckBox Grid.Row="1"
+                              Name="CbxNoiseOutYValues"
+                              IsEnabled="False"
+                              Content="дія на вихідне значення Y"
+                              Style="{StaticResource StyleCheckBox}"></CheckBox>
+                    
+                </Grid>
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock 
+                            Style="{StaticResource StyleTextBlockText02}"
+                            Text="Введіть кількість експериментів:"></TextBlock>
+                    <TextBox Grid.Column="1" 
+                             Text="100"
+                             Name="TbxNumberOfExperiments"
+                             Style="{StaticResource StyleTextBox}"></TextBox>
+                </Grid>
+                <TextBlock Grid.Row="6"
+                            Style="{StaticResource StyleTextBlockText02}"
+                            Text="Введіть коефіцієнти вагової функції для ІМНК:"></TextBlock>
+                <Grid Grid.Row="7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text=" θ = " 
+                                   Style="{StaticResource StyleTextBlockEquation}"></TextBlock>
+                        <TextBox Grid.Column="1" Name="TbxTheta" 
+                                 Text="0"
+                                 Style="{StaticResource StyleTextBox}"></TextBox>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text=" γ = " 
+                                   Style="{StaticResource StyleTextBlockEquation}"></TextBlock>
+                        <TextBox Grid.Column="1" Name="TbxGamma" 
+                                 Text="1"
+                                 Style="{StaticResource StyleTextBox}"></TextBox>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <!--<Grid Grid.Column="1" Name="gridSrlViewTbx">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <ScrollViewer Grid.Row="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Name="StPanLabels"></StackPanel>
+                        <StackPanel Grid.Column="1" Name="StPanTextBoxes"></StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </Grid>-->
+        </Grid>
+        <Grid Grid.Row ="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Margin="5"
+                Name="BtnGenerateData"
+                FontSize="18" Content="Згенерувати"
+                Click="BtnGenerateData_Click">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="GreenYellow"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <Button Grid.Column="1"  Margin="0,5,5,5"
+                Name="BtnDataSaveToExcel"
+                FontSize="18" Content="To Excel"
+                Click="BtnDataSaveToExcel_Click">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Green"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <Button Grid.Column="2"  Margin="0,5,5,5"
+                Name="BtnIntegratedLeastSquares"
+                FontSize="18" Content="ІМНК"
+                Click="BtnIntegratedLeastSquares_Click">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="DarkCyan"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+        </Grid>
+    </Grid>
+</Window>

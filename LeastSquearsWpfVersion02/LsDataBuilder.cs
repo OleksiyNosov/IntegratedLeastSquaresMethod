@@ -135,6 +135,7 @@ namespace LeastSquearsWpfVersion02
                     break;
                 case NoiseTypes.White:
                     XNoise = Matrix<double>.Build.Dense(tests, numbX, (i, j) => rand.NextDouble() * 2 - 1); // / 5 - 0.1
+                    XNoise.Column(0).SetValues(Vector<double>.Build.Dense(tests, (i) => 0).ToArray());
                     break;
                 case NoiseTypes.Colorful:
                     XNoise = Matrix<double>.Build.Dense(tests, numbX);
@@ -186,7 +187,7 @@ namespace LeastSquearsWpfVersion02
             var w = 2 * Constants.Pi / T;
 
             X = Matrix<double>.Build.Dense(tests, numbX, (i, j) => Math.Sin(w * i + alpha * (j - 1)));
-            X.SetColumn(0, Vector<double>.Build.Dense(tests, (i) => 1 + XNoise[i, 0]));
+            X.SetColumn(0, Vector<double>.Build.Dense(tests, (i) => 1));
         }
 
         /// <summary>

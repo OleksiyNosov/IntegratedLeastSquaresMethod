@@ -229,7 +229,7 @@ namespace LeastSquearsWpfVersion02
         /// </summary>
         private static void AddNoiseToY()
         {
-            if (noiseX == NoiseTypes.None)
+            if (noiseY == NoiseTypes.None)
                 return;
 
             for (int i = 0; i < Y.Count; i++)

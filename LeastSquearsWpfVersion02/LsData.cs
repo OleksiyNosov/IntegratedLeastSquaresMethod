@@ -247,6 +247,8 @@ namespace LeastSquearsWpfVersion02
 
             AMtx1 = Matrix<double>.Build.Dense(Parameters.NumbOfXVal, Parameters.NumbOfXVal, (i, j) => CalcMtxElem(i, j, EtaStd, AMtxElemFunc));
 
+            Normalize(AMtx1);
+
             DetAMtx1 = AMtx1.Determinant();
 
             do
@@ -257,8 +259,16 @@ namespace LeastSquearsWpfVersion02
 
                 DetAMtxM = AMtxM.Determinant();
 
-            } while (DetAMtxM > 0.1 * DetAMtx1);
+            } while (Math.Abs(DetAMtxM) > 0.1 * Math.Abs(DetAMtx1));
         }
+
+        private void Normalize(Matrix<double> aMtx1)
+        {
+            for (int i = 0; i < aMtx1.RowCount; i++)
+                for (int j = 0; j < aMtx1.ColumnCount; j++)
+                    aMtx1[i, j] /= aMtx1[i, i]; 
+        }
+
         private void CalcAMtx()
         {
             AMtx = Matrix<double>.Build.Dense(Parameters.NumbOfXVal, Parameters.NumbOfXVal, (i, j) => CalcMtxElem(i, j, EtaNew, AMtxElemFunc));
